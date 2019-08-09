@@ -35,24 +35,7 @@ public class ErrorHandlerController implements ErrorController {
     }
 
     @RequestMapping
-    public Map<String, Object> error(WebRequest aRequest) {
-        Map<String, Object> body = getErrorAttributes(aRequest, getTraceParameter(aRequest));
-        String trace = (String) body.get("trace");
-        if (isNotBlank(trace)) {
-            body.put("trace", trace);
-        }
-        return body;
-    }
-
-    private boolean getTraceParameter(WebRequest request) {
-        String parameter = request.getParameter("trace");
-        if (parameter == null) {
-            return false;
-        }
-        return toBoolean(parameter.toLowerCase());
-    }
-
-    private Map<String, Object> getErrorAttributes(WebRequest aRequest, boolean includeStackTrace) {
-        return errorAttributes.getErrorAttributes(aRequest, includeStackTrace);
+    public Map<String, Object> error(WebRequest webRequest) {
+        return errorAttributes.getErrorAttributes(webRequest, true);
     }
 }
