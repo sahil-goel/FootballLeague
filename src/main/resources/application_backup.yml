@@ -1,0 +1,12 @@
+spring.application.name: football-league-app
+server.port: '${port:8080}'
+footballapi:
+  url: 'https://apiv2.apifootball.com/'
+  apiKey: 9bb66184e0c8145384fd2cc0f7b914ada57b4e8fd2e4d6d586adcc27c257a978
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: debug
